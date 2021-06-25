@@ -171,6 +171,7 @@ pub fn forward(buffer: []u8, reader: anytype, writer: anytype) !void {
 }
 
 pub fn downloadHttpOrRedirect(httpUrl: Url.Http, writer: anytype, options: DownloadOptions, state: *DownloadState) !DownloadResult {
+    _ = state;
     const file = try net.tcpConnectToHost(options.allocator, httpUrl.getHostString(), httpUrl.getPortOrDefault());
     defer {
         // TODO: file.shutdown()???
